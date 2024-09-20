@@ -56,11 +56,6 @@ class ContactService {
             _id: ObjectId.isValid(id) ? new ObjectId(id) : null, 
         }
 
-        if (!ObjectId.isValid(id)) {
-            return new ApiError(400, "Invalid ID");
-        }
-
-
         const newContact = this.extractContactData(payload)
         const result = await this.Contact.findOneAndUpdate(
             filter,
