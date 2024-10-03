@@ -56,13 +56,13 @@ class ContactService {
             _id: ObjectId.isValid(id) ? new ObjectId(id) : null, 
         }
 
-        const newContact = this.extractContactData(payload)
+        const update = this.extractContactData(payload);
         const result = await this.Contact.findOneAndUpdate(
             filter,
-            { $set: newContact },
+            { $set: update },
             { returnDocument: 'after' }
         );
-        return result.value;
+        return result;
     }
 
     async delete (id) {
